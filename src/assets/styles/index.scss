@@ -1,0 +1,68 @@
+@import "normalize.scss";
+@import "variables.scss";
+
+html{font-size:16px}
+@media screen and (min-width:300px) and (max-width:374px){html{font-size:14px}}
+@media screen and (min-width:375px) and (max-width:413px){html{font-size:14px}}
+@media screen and (min-width:414px) and (max-width:639px){html{font-size:15px}}
+@media screen and (min-width:640px) and (max-width:719px){html{font-size:15px}}
+@media screen and (min-width:720px) and (max-width:749px){html{font-size:15px}}
+@media screen and (min-width:750px) and (max-width:799px){html{font-size:15px}}
+@media screen and (min-width:800px){html{font-size:16px}}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+.clearfix:after {
+  clear: both;
+}
+.omit {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+	-webkit-font-smoothing:antialiased;
+  webkit-tap-highlight-color: transparent;
+}
+body {
+  width: 100%;
+  height: 100%;
+  color: #333 !important;
+  font-family: "Whitney SSm A","Whitney SSm B", Tahoma, 'SimHei', 'Helvetica Neue', Helvetica, 'Microsoft Yahei', Arial, sans-serif !important;
+  font-weight: 300;
+}
+#root {
+  width: 100%;
+  height: 100%;
+}
+ul {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+img {
+  max-width: 100%;
+}
+
+.ant-table {
+  color: #333 !important;
+}
