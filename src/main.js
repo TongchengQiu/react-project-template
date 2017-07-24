@@ -1,49 +1,54 @@
 import 'styles/index.scss';
 
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM, { render } from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { useStrict } from 'mobx';
+import { Provider } from 'mobx-react';
 import { AppContainer } from 'react-hot-loader';
+import { rehydrate, hotRehydrate } from 'rfx-core';
 
-import Root from './containers/Root';
+import App from './pages/App';
+import stores from './stores';
 
-import AppRouter from './pages/route';
+const store = rehydrate();
+
+useStrict(true);
+
+const isProduction = (process.env.NODE_ENV === 'production');
 
 const MOUNT_NODE = document.getElementById('root');
 
-const render = (Component) => {
-  ReactDOM.render(
+const renderDOM = (Component) => {
+  render(
     <AppContainer>
-      <Component>
-        <AppRouter />
-      </Component>
+      <Router>
+        <Provider store={isProduction ? store : hotRehydrate()}>
+          <Component />
+        </Provider>
+      </Router>
     </AppContainer>,
     MOUNT_NODE
   );
 };
 
-if (process.env.NODE_ENV !== 'production') {
+if (!isProduction) {
   if (window.devToolsExtension) {
     window.devToolsExtension.open();
   }
 }
 
-render(Root);
+renderDOM(App);
 
 if (module.hot) {
-  module.hot.accept('./main.js');
-  module.hot.accept('./pages/route', () => {
-    // ReactDOM.unmountComponentAtNode(MOUNT_NODE);
-    // render(Root);
-    window.location.reload();
-  });
-  module.hot.accept('./containers/Root', () => {
+  module.hot.accept(() => {
     ReactDOM.unmountComponentAtNode(MOUNT_NODE);
-    render(Root);
+    renderDOM(App);
   });
 }
 
 /* eslint-disable */
-if (process.env.NODE_ENV === 'production') {
+if (isProduction) {
   require('offline-plugin/runtime').install();
 }
 /* eslint-enable */

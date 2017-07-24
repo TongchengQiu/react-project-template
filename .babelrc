@@ -8,14 +8,12 @@
       }
     ],
     "react",
-    "stage-2"
+    "stage-0"
   ],
   "plugins": [
-    "react-hot-loader/babel",
-    "transform-runtime",
-    "transform-class-properties",
-    "transform-function-bind",
     "transform-decorators-legacy",
+    "transform-runtime",
+    "react-hot-loader/babel"
   ],
   "env": {
     "build": {

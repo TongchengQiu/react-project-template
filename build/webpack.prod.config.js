@@ -58,7 +58,6 @@ const proWebpackConfig = merge(baseWebpackConfig, {
       allChunks: true,
       disable: false,
     }),
-    new OfflinePlugin(),
     new HtmlWebpackPlugin({
       filename: config.build.index,
       template: './index.html',
@@ -100,7 +99,8 @@ const proWebpackConfig = merge(baseWebpackConfig, {
         yandex: false,
         windows: false
       }
-    })
+    }),
+    new OfflinePlugin()
   ]
 })
 
